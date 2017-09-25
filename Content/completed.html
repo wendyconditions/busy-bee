@@ -1,0 +1,38 @@
+﻿<div class="row text-center">
+    <h2>Completed Tasks</h2>
+</div>
+<div class="row">
+    <div class="col-sm-12 well">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-md-9">Task</th>
+                    <th class="col-md-2">Completed Date</th>
+                    <th class="col-md-1">Delete from list</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in vm.items | orderBy: ['priority','dateCreated']"
+                    ng-class="{backgroundRed: item.priority === 1, backgroundGreen: item.priority === 2, backgroundYellow: item.priority ===3}"
+                    ng-if="item.dateCompleted">
+                    <td>
+                        {{item.toDoItem}}
+                    </td>
+                    <td>
+                        {{item.dateCompleted | date}}
+                    </td>
+                    <td>
+                        <label class="btn btn-danger">
+                            <input type="checkbox" ng-model="item.isDelete" autocomplete="off">
+                        </label>
+                        <pre>{{item | json}}</pre>
+                        <a ng-click="vm.btnDelete(item.id)">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--<div class="row">
+        <button type="submit" class="btn btn-danger pull-right" ng-click="vm.btnComplete(vm.items)">Completed</button>
+    </div>-->
+</div>

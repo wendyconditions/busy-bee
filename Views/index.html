@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>To-Do List Application</title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div ng-app="ToDoList" ng-controller="listController as vm">
+        {{vm.name}}
+    </div>
+
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/jquery-3.2.1.min.js"></script>
+    <script src="../Scripts/angular.js"></script>
+
+    <script type="text/javascript">
+
+        (function () {
+            angular
+                .module("ToDoList", []);
+        })();
+    </script>
+    <script src="../Content/core.js"></script>
+
+</body>
+</html>
