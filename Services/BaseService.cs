@@ -85,15 +85,7 @@ namespace TestingList.Services
                    paramCollection.AddWithValue("@Id", model.Id);
                });
         }
-
-        //public void SoftDelete(DeleteIdsRequest model)
-        //{
-        //    _dataProvider.ExecuteNonQuery("dbo.ToDoList_SoftDeleteTask"
-        //      , inputParamMapper: delegate (SqlParameterCollection paramCollection)
-        //      {
-        //          paramCollection.AddWithValue("dbo.IntIdTable", Ids.TypeName);
-        //      });
-        //}
+ 
         public Dictionary<int, DeleteIdsRequest> SoftDelete(DeleteIdsRequest model)
         {
             var results = new Dictionary<int, DeleteIdsRequest>();
@@ -108,8 +100,6 @@ namespace TestingList.Services
             return results;
         }
 
-
-
         public void HardDelete(int Id)
         {
             _dataProvider.ExecuteNonQuery("dbo.ToDoList_Delete"
@@ -118,31 +108,5 @@ namespace TestingList.Services
                   paramCollection.AddWithValue("@Id", Id);
               });
         }
-
-        //public CommentGroupBase GetById(int id)
-        //{
-        //    CommentGroupBase singleItem = null;
-
-        //    _dataProvider.ExecuteCmd("dbo.CommentGroup_GetById"
-        //       , inputParamMapper: delegate (SqlParameterCollection paramCollection)
-        //       {
-        //           paramCollection.AddWithValue("@Id", id);
-        //       }
-        //       , singleRecordMapper: delegate (IDataReader reader, short set)
-        //       {
-        //           singleItem = new CommentGroupBase();
-        //           int startingIndex = 0; //startingOrdinal
-
-        //           singleItem.Id = reader.GetSafeInt32(startingIndex++);
-        //           singleItem.Comment = reader.GetSafeString(startingIndex++);
-        //           singleItem.ContentItemId = reader.GetSafeInt32(startingIndex++);
-        //           singleItem.ParentCommentId = reader.GetSafeInt32(startingIndex++);
-        //           singleItem.UserId = reader.GetSafeInt32(startingIndex++);
-
-        //       }
-        //       );
-        //    return singleItem;
-        //}
-
     }
 }

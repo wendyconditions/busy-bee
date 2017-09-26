@@ -9,7 +9,7 @@
 
     function _configureStates($stateProvider, $urlRouterProvider) {
 
-        // For any unmatched url, redirect to /state1
+        // For any unmatched url, redirect to /tasks
         $urlRouterProvider.otherwise("/tasks");
 
         // Registering states
