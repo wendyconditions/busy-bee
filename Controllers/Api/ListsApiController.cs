@@ -80,11 +80,12 @@ namespace TestingList.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK, model);
         }
 
-        [Route("hard/{id:int}"), HttpDelete]
-        public HttpResponseMessage HardDelete(int Id)
+        [Route("hard"), HttpPost]
+        public HttpResponseMessage HardDelete(DeleteIdsRequest model)
         {
-            listService.HardDelete(Id);
-            return Request.CreateResponse(HttpStatusCode.OK, true);
+            var response = new ItemResponse<Dictionary<int, DeleteIdsRequest>>();
+            response.Item = listService.HardDelete(model);
+            return Request.CreateResponse(HttpStatusCode.OK, model);
         }
     }
 }

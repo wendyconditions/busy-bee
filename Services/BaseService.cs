@@ -100,13 +100,27 @@ namespace TestingList.Services
             return results;
         }
 
-        public void HardDelete(int Id)
+        public Dictionary<int, DeleteIdsRequest> HardDelete(DeleteIdsRequest model)
         {
-            _dataProvider.ExecuteNonQuery("dbo.ToDoList_Delete"
-              , inputParamMapper: delegate (SqlParameterCollection paramCollection)
-              {
-                  paramCollection.AddWithValue("@Id", Id);
-              });
+            var results = new Dictionary<int, DeleteIdsRequest>();
+
+            _dataProvider.ExecuteNonQuery("dbo.ToDoList_HardDeleteTask",
+                parameters =>
+                {
+                    var ids = parameters.AddWithValue("@Id", new IntIdTable(model.Ids));
+                    ids.SqlDbType = System.Data.SqlDbType.Structured;
+                    ids.TypeName = "dbo.IntIdTable";
+                });
+            return results;
         }
+
+        //public void HardDelete(int Id)
+        //{
+        //    _dataProvider.ExecuteNonQuery("dbo.ToDoList_Delete"
+        //      , inputParamMapper: delegate (SqlParameterCollection paramCollection)
+        //      {
+        //          paramCollection.AddWithValue("@Id", Id);
+        //      });
+        //}
     }
 }

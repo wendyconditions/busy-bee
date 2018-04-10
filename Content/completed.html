@@ -22,17 +22,19 @@
                         {{item.dateCompleted | date}}
                     </td>
                     <td>
-                        <label class="btn btn-danger">
-                            <input type="checkbox" ng-model="item.isDelete" autocomplete="off">
+                        <label class="containercheck">
+                            <input type="checkbox" autocomplete="off" ng-model="item.isDelete">
+                            <span class="checkmark"></span>
                         </label>
-                        <pre>{{item | json}}</pre>
-                        <a ng-click="vm.btnDelete(item.id)">Delete</a>
                     </td>
+                    
                 </tr>
             </tbody>
         </table>
+        
     </div>
-    <!--<div class="row">
-        <button type="submit" class="btn btn-danger pull-right" ng-click="vm.btnComplete(vm.items)">Completed</button>
-    </div>-->
+    <div class="row">
+        <!--style button-->
+        <a ng-click="vm.btnDelete(vm.items)">Delete</a>
+    </div>
 </div>

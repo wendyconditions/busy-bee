@@ -13,7 +13,7 @@ namespace TestingList.Models.Responses
 
         public BaseResponse()
         {
-            //Sabio: This TxId we are just faking to demo the purpose
+            // This TxId we are just faking to demo the purpose
             this.TransactionId = Guid.NewGuid().ToString();
         }
     }

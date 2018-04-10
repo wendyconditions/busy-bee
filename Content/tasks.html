@@ -7,19 +7,18 @@
             </div>
             <label for="task">Priority</label>
             <div class="btn-group btn-group-justified">
-                <label class="btn btn-danger text-xs text-no-transform clearfix">
+                <label class="btn btn-danger text-xs text-no-transform clearfix" ng-class="{active: vm.data.priority == 1}">
                     <input type="radio" ng-model="vm.data.priority" class="hidden" value="1">High
                 </label>
-                <label class="btn btn-success btn-fancy-radio text-xs text-no-transform clearfix">
+                <label class="btn btn-success btn-fancy-radio text-xs text-no-transform clearfix" ng-class="{active: vm.data.priority == 2}">
                     <input type="radio" ng-model="vm.data.priority" class="hidden" value="2">Med
                 </label>
-                <label class="btn btn-warning btn-fancy-radio text-xs text-no-transform clearfix">
+                <label class="btn btn-warning btn-fancy-radio text-xs text-no-transform clearfix" ng-class="{active: vm.data.priority == 3}">
                     <input type="radio" ng-model="vm.data.priority" class="hidden" value="3">Low
                 </label>
             </div>
-            <pre>{{vm.data | json}}</pre>
             <br />
-            <button type="submit" class="btn btn-default" ng-click="vm.btnAdd(vm.data)">Add</button>
+            <button type="submit" class="btn btn-default" ng-click="vm.btnAdd(vm.data)">{{vm.data.id ? 'Update' : 'Add'}}</button>
             <br /><br />
         </form>
     </div>
@@ -43,13 +42,14 @@
                     ng-class="{backgroundRed: item.priority === 1, backgroundGreen: item.priority === 2, backgroundYellow: item.priority ===3}"
                     ng-if="!item.dateCompleted">
                     <td>
-                        <label class="btn btn-success pull-left">
-                            <input type="checkbox" ng-model="item.isComplete" autocomplete="off">
+                        <label class="containercheck pull-left">
+                            <input type="checkbox" autocomplete="off" ng-model="item.isComplete">
+                            <span class="checkmark"></span>
                         </label>
                     </td>
                     <td>{{item.toDoItem}}</td>
                     <td>
-                        <a ng-click="vm.btnUpdate(item)">Update</a>                  
+                        <a ng-click="vm.btnUpdate(item)">Update</a>
                     </td>
                 </tr>
             </tbody>
