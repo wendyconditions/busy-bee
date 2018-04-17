@@ -23,7 +23,7 @@
         function _createNewList() {
             $uibModal.open({
                 templateUrl: 'html/newListModal.html',
-                size: 'sm',
+                size: 'md',
                 controller: createListController,
                 scope: $scope
             });
@@ -31,8 +31,16 @@
             createListController.$inject = ['$scope', '$uibModalInstance'];
 
             function createListController($scope, $uibModalInstance) {
-                
                 $scope.wendy = "wendy";
+                $scope.test = '';
+                $scope.btnCreate = function () {
+                    console.log($scope.test);
+                    $uibModalInstance.close();
+                }
+
+                $scope.btnCancel = function () {
+                    $uibModalInstance.close();
+                }
             }
         }
 
