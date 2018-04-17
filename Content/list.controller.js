@@ -5,9 +5,9 @@
         .module("ToDoList")
         .controller("listController", listController);
 
-    listController.$inject = ["listService"];
+    listController.$inject = ["listService", "$uibModal", "$scope"];
 
-    function listController(listService) {
+    function listController(listService, $uibModal, $scope) {
         var vm = this;
         vm.$onInit = _init;
         vm.data = {};
@@ -16,14 +16,33 @@
         vm.btnComplete = _btnComplete;
         vm.btnUpdate = _btnUpdate;
         vm.btnDelete = _btnDelete;
+        vm.createNewList = _createNewList;
 
         /////////////
+
+        function _createNewList() {
+            $uibModal.open({
+                templateUrl: 'html/newListModal.html',
+                size: 'sm',
+                controller: createListController,
+                scope: $scope
+            });
+
+            createListController.$inject = ['$scope', '$uibModalInstance'];
+
+            function createListController($scope, $uibModalInstance) {
+                
+                $scope.wendy = "wendy";
+            }
+        }
 
         function _init() {
             listService.loadList().then(_loadSuccess);
         }
 
         function _loadSuccess(response) {
+            //check null
+            console.log(response);
             var response = response.data.items
             for (var i = 0; i < response.length; i++) {
                 if (response[i].priority == 1) {

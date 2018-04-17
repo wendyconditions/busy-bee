@@ -8,8 +8,6 @@ namespace TestingList.Models.Responses
     /// <typeparam name="T"></typeparam>
     public class ItemResponse<T> : SuccessResponse
     {
-
         public T Item { get; set; }
-
     }
 }

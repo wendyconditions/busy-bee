@@ -20,7 +20,7 @@ namespace TestingList
             // register all your components with the container here
             // it is NOT necessary to register your controllers
 
-            container.RegisterType<IListService, BaseService>();
+            container.RegisterType<IListService, ListService>();
 
             container.RegisterType<IDataProvider, SqlDataProvider>(
                 new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));

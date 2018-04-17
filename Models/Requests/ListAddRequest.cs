@@ -13,6 +13,7 @@ namespace TestingList.Models.Requests
         [Required]
         [MaxLength(4)]
         public int Priority { get; set; }
+        public int ListTypeId { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModified { get; set; }
     }

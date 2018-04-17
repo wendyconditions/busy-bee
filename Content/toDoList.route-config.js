@@ -24,6 +24,11 @@
                 component: 'completed',
                 url: '/completed'
             })
+            .state({
+                name: 'another',
+                component: 'another',
+                url: '/another'
+            })
     }
 
     // Definining state components and directing to templates
@@ -34,6 +39,11 @@
 
     app.component('completed', {
         templateUrl: 'completed.html'
+        , controller: 'listController as vm'
+    });
+
+    app.component('another', {
+        templateUrl: '/Content/html/home.html'
         , controller: 'listController as vm'
     });
 })();

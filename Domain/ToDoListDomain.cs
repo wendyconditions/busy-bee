@@ -14,5 +14,6 @@ namespace TestingList.Domain
         public DateTime? DateModified { get; set; }
         public DateTime? DateCompleted { get; set; }
         public int Id { get; set; }
+        public int ListTypeId {get;set;}
     }
 }

@@ -9,7 +9,6 @@ namespace TestingList.Models.Responses
     {
         public SuccessResponse()
         {
-
             this.IsSuccessful = true;
         }
     }

@@ -11,12 +11,12 @@ using TestingList.Models.Requests;
 
 namespace TestingList.Services
 {
-    public class BaseService : IListService
+    public class ListService : IListService
     {
         //delcaring/instaniating dataprovider
         private IDataProvider _dataProvider;
 
-        public BaseService(IDataProvider dataProvider)
+        public ListService(IDataProvider dataProvider)
         {
             _dataProvider = dataProvider;
         }
@@ -38,6 +38,7 @@ namespace TestingList.Services
                      singleItem.DateCreated = reader.GetSafeDateTime(startingIndex++);
                      singleItem.DateModified = reader.GetSafeUtcDateTimeNullable(startingIndex++);
                      singleItem.DateCompleted = reader.GetSafeUtcDateTimeNullable(startingIndex++);
+                     singleItem.ListTypeId = reader.GetSafeInt32(startingIndex++);
 
                      //not going to create list if there's no data / lazy load / if statement
                      if (list == null)
@@ -60,7 +61,7 @@ namespace TestingList.Services
                {
                    paramCollection.AddWithValue("@ToDoItem", model.ToDoItem);
                    paramCollection.AddWithValue("@Priority", model.Priority);
-
+                   paramCollection.AddWithValue("@ListTypeId", model.ListTypeId);
                    SqlParameter idParameter = new SqlParameter("@Id", System.Data.SqlDbType.Int);
                    idParameter.Direction = System.Data.ParameterDirection.Output;
 
@@ -83,6 +84,7 @@ namespace TestingList.Services
                    paramCollection.AddWithValue("@ToDoItem", model.ToDoItem);
                    paramCollection.AddWithValue("@Priority", model.Priority);
                    paramCollection.AddWithValue("@Id", model.Id);
+                   paramCollection.AddWithValue("@ListTypeId", model.ListTypeId);
                });
         }
  
