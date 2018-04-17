@@ -8,7 +8,7 @@ namespace TestingList.Interfaces
 {
     public interface ISystemDictionaryService
     {
-        List<SystemDictionaryDomain> GetAll();
+        List<ListTypeModel> GetAll();
         int Insert(SystemDictionaryDomain model);
         //void Update(ToDoListDomain model);
         //Dictionary<int, DeleteIdsRequest> SoftDelete(DeleteIdsRequest model);

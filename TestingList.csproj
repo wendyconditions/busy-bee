@@ -176,6 +176,7 @@
     <Compile Include="Controllers\Api\SystemDictionaryApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Domain\ListTypeModel.cs" />
     <Compile Include="Domain\SystemDictionaryDomain.cs" />
     <Compile Include="Domain\ToDoListDomain.cs" />
     <Compile Include="Extensions\IDataReaderExt.cs" />

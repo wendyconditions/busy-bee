@@ -7,7 +7,7 @@
 
     listController.$inject = ["listService", "$uibModal", "$scope", "systemDictionaryService"];
 
-    function listController(listService, $uibModal, $scope) {
+    function listController(listService, $uibModal, $scope, systemDictionaryService) {
         var vm = this;
         vm.$onInit = _init;
         vm.data = {};
@@ -17,8 +17,13 @@
         vm.btnUpdate = _btnUpdate;
         vm.btnDelete = _btnDelete;
         vm.createNewList = _createNewList;
+        vm.expandList = _expandList;
 
         /////////////
+
+        function _expandList(list) {
+            list.toggle = !list.toggle;
+        }
 
         function _createNewList() {
             $uibModal.open({
@@ -28,10 +33,9 @@
                 scope: $scope
             });
 
-            createListController.$inject = ['$scope', '$uibModalInstance', 'systemDictionaryService'];
+            createListController.$inject = ['$scope', '$uibModalInstance'];
 
-            function createListController($scope, $uibModalInstance, systemDictionaryService) {
-                $scope.wendy = "wendy";
+            function createListController($scope, $uibModalInstance) {
                 $scope.newlist = {};
                 $scope.btnCreate = function () {
                     console.log($scope.newlist);
@@ -45,29 +49,25 @@
 
                 function _loadSuccess(response) {
                     console.log(response);
+                    //set item to ListTypeID of toddolist model
                 }
             }
         }
 
         function _init() {
+            // get lists - maybe just get users categories and the lists
+            systemDictionaryService.loadUserLists().then(_loadUsersLists);
             listService.loadList().then(_loadSuccess);
         }
 
+        function _loadUsersLists(r) {
+            vm.lists = r.data.items;
+
+            console.log(vm.lists);
+        }
+
         function _loadSuccess(response) {
-            //check null
             console.log(response);
-            var response = response.data.items;
-            // fix this var response... its already defined
-            for (var i = 0; i < response.length; i++) {
-                if (response[i].priority == 1) {
-                    vm.backgroundRed = true;
-                } else if (response[i].priority == 2) {
-                    vm.backgroundGreen = true;
-                } else if (response[i].priority == 3) {
-                    vm.backgroundYellow = true;
-                }
-            }
-            vm.items = response;
         }
 
         function _btnAdd(data) {

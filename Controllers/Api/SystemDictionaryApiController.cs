@@ -16,10 +16,12 @@ namespace TestingList.Controllers.Api
     public class SystemDictionaryApiController : ApiController
     {
         readonly ISystemDictionaryService systemDicionaryService;
+        readonly IListService listService;
 
-        public SystemDictionaryApiController(ISystemDictionaryService systemDicionaryService)
+        public SystemDictionaryApiController(ISystemDictionaryService systemDicionaryService, IListService listService)
         {
             this.systemDicionaryService = systemDicionaryService;
+            this.listService = listService;
         }
 
         [Route, HttpGet]
@@ -30,8 +32,16 @@ namespace TestingList.Controllers.Api
                 return Request.CreateErrorResponse(HttpStatusCode.Forbidden, ModelState);
             }
 
-            ItemsResponse<SystemDictionaryDomain> Response = new ItemsResponse<SystemDictionaryDomain>();
+            ItemsResponse<ListTypeModel> Response = new ItemsResponse<ListTypeModel>();
             Response.Items = systemDicionaryService.GetAll();
+            
+            if(Response.Items != null)
+            {
+                foreach (var item in Response.Items)
+                {
+                    item.ToDoList = listService.GetAll().Where(p => p.ListTypeId == item.Id).ToList();
+                }
+            }
             return Request.CreateResponse(HttpStatusCode.OK, Response);
         }
 

@@ -19,26 +19,26 @@ namespace TestingList.Services
             _dataProvider = dataProvider;
         }
 
-        public List<SystemDictionaryDomain> GetAll()
+        public List<ListTypeModel> GetAll()
         {
-            List<SystemDictionaryDomain> list = null;
+            List<ListTypeModel> list = null;
 
             _dataProvider.ExecuteCmd("dbo.SystemDictionary_SelectAll"
                 , inputParamMapper: null
                 , singleRecordMapper: delegate (IDataReader reader, short set)
                 {
-                    SystemDictionaryDomain singleItem = new SystemDictionaryDomain();
+                    ListTypeModel singleItem = new ListTypeModel();
+                    
                     int startingIndex = 0; //startingOrdinal
 
                     singleItem.Id = reader.GetSafeInt32(startingIndex++);
                     singleItem.ItemValue = reader.GetSafeString(startingIndex++);
                     singleItem.CreatedUserID = reader.GetSafeInt32(startingIndex++);
                     singleItem.CreatedTime = reader.GetSafeDateTime(startingIndex++);
-
                     //not going to create list if there's no data / lazy load / if statement
                     if (list == null)
                     {
-                        list = new List<SystemDictionaryDomain>();
+                        list = new List<ListTypeModel>();
                     }
 
                     list.Add(singleItem);

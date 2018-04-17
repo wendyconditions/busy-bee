@@ -7,7 +7,11 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-12 well">
-        <!-- ng-repeat lists -->
+    <div class="col-sm-12 col-md-6 well" ng-repeat="list in vm.lists">
+        <span>{{list.itemValue}}</span><i class="fa {{list.toggle ? 'fa-chevron-up' : 'fa-chevron-down'}} pull-right list-chev"
+                                          ng-click="vm.expandList(list)"></i>
+        <div ng-if="list.toggle">
+                {{list.createdTime | date}}
+        </div>
     </div>
 </div>
