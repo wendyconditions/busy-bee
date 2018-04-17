@@ -173,9 +173,10 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\ListsApiController.cs" />
-    <Compile Include="Controllers\Api\SystemDictionaryController.cs" />
+    <Compile Include="Controllers\Api\SystemDictionaryApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Domain\SystemDictionaryDomain.cs" />
     <Compile Include="Domain\ToDoListDomain.cs" />
     <Compile Include="Extensions\IDataReaderExt.cs" />
     <Compile Include="Extensions\IntIdTable.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\SqlDataProvider.cs" />
     <Compile Include="Services\ListService.cs" />
+    <Compile Include="Services\SystemDictionaryService.cs" />
     <Compile Include="Services\TestService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +208,7 @@
     <Content Include="Content\html\home.html" />
     <Content Include="Content\html\newListModal.html" />
     <Content Include="Content\js\newListModal.js" />
+    <Content Include="Content\js\systemDictionary.service.js" />
     <Content Include="Content\list.controller.js" />
     <Content Include="Content\toDoList.route-config.js" />
     <Content Include="Content\tasks.html" />

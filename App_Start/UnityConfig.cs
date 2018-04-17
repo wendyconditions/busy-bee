@@ -21,7 +21,7 @@ namespace TestingList
             // it is NOT necessary to register your controllers
 
             container.RegisterType<IListService, ListService>();
-
+            container.RegisterType<ISystemDictionaryService, SystemDictionaryService>();
             container.RegisterType<IDataProvider, SqlDataProvider>(
                 new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
 

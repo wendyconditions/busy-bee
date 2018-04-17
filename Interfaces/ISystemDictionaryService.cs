@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using TestingList.Domain;
 
 namespace TestingList.Interfaces
 {
     public interface ISystemDictionaryService
     {
-        //List<ToDoListDomain> GetAll();
-        //int Insert(ToDoListDomain model);
+        List<SystemDictionaryDomain> GetAll();
+        int Insert(SystemDictionaryDomain model);
         //void Update(ToDoListDomain model);
         //Dictionary<int, DeleteIdsRequest> SoftDelete(DeleteIdsRequest model);
         //Dictionary<int, DeleteIdsRequest> HardDelete(DeleteIdsRequest model);

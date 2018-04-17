@@ -5,7 +5,7 @@
         .module("ToDoList")
         .controller("listController", listController);
 
-    listController.$inject = ["listService", "$uibModal", "$scope"];
+    listController.$inject = ["listService", "$uibModal", "$scope", "systemDictionaryService"];
 
     function listController(listService, $uibModal, $scope) {
         var vm = this;
@@ -28,18 +28,23 @@
                 scope: $scope
             });
 
-            createListController.$inject = ['$scope', '$uibModalInstance'];
+            createListController.$inject = ['$scope', '$uibModalInstance', 'systemDictionaryService'];
 
-            function createListController($scope, $uibModalInstance) {
+            function createListController($scope, $uibModalInstance, systemDictionaryService) {
                 $scope.wendy = "wendy";
-                $scope.test = '';
+                $scope.newlist = {};
                 $scope.btnCreate = function () {
-                    console.log($scope.test);
+                    console.log($scope.newlist);
+                    systemDictionaryService.createListType($scope.newlist).then(_loadSuccess);
                     $uibModalInstance.close();
                 }
 
                 $scope.btnCancel = function () {
                     $uibModalInstance.close();
+                }
+
+                function _loadSuccess(response) {
+                    console.log(response);
                 }
             }
         }
@@ -51,7 +56,8 @@
         function _loadSuccess(response) {
             //check null
             console.log(response);
-            var response = response.data.items
+            var response = response.data.items;
+            // fix this var response... its already defined
             for (var i = 0; i < response.length; i++) {
                 if (response[i].priority == 1) {
                     vm.backgroundRed = true;
