@@ -1,17 +1,33 @@
 ﻿<div class="row">
-    <div class="col-sm-12 well">
+    <div class="col-sm-12">
         <button type="button" 
-                class="btn btn-block btn-primary"
+                class="btn btn-block btn-primary create-button"
                 ng-click="vm.createNewList()">New List <i class="fa fa-lg fa-plus-circle add-icon"></i></button>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-sm-12 col-md-6 well" ng-repeat="list in vm.lists">
-        <span>{{list.itemValue}}</span><i class="fa {{list.toggle ? 'fa-chevron-up' : 'fa-chevron-down'}} pull-right list-chev"
+    <div class="col-sm-12 col-md-6 well list-items"
+         ng-repeat="list in vm.lists">
+        <span>{{list.itemValue}}</span><i class="fa fa-lg {{list.toggle ? 'fa-chevron-up' : 'fa-chevron-down'}} pull-right list-chev"
                                           ng-click="vm.expandList(list)"></i>
-        <div ng-if="list.toggle">
-                {{list.createdTime | date}}
+        <h6>{{list.toDoList.length | number}} / completed</h6>
+
+        <div class="list-content" ng-if="list.toggle">
+            <div ng-repeat="item in list.toDoList" class="well">
+                <label class="containers">
+                    {{item.toDoItem}}
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                </label>
+                
+                <h6>{{list.createdTime | date}}</h6>
+            </div>
+            <div class="new-item">
+                <i class="fa fa-lg fa-plus"></i> <span class="add-icon"><em>New List Item...</em></span>
+            </div>
         </div>
     </div>
 </div>
+
+  

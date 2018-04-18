@@ -48,16 +48,18 @@
                 }
 
                 function _loadSuccess(response) {
-                    console.log(response);
-                    //set item to ListTypeID of toddolist model
+                    var newListType = {
+                        id: response.data.item,
+                        itemValue: $scope.newlist.itemValue,
+                        toDoList: []
+                    }
+                    vm.lists.push(newListType);
                 }
             }
         }
 
         function _init() {
-            // get lists - maybe just get users categories and the lists
             systemDictionaryService.loadUserLists().then(_loadUsersLists);
-            listService.loadList().then(_loadSuccess);
         }
 
         function _loadUsersLists(r) {
