@@ -1,0 +1,11 @@
+﻿<div class="row" ng-controller="userController as uc">
+    <div class="col-sm-12 login-box-center login-box">
+        <div class="header text-center"><h1>Login</h1></div>
+        <input type="email" class="form-control" placeholder="E-mail" ng-model="uc.data.email" />
+        <input type="password" class="form-control" placeholder="Password" ng-model="uc.data.password" />
+        <button type="button" class="btn btn-primary pull-right" ng-click="uc.btnLogin()">Login</button>
+        <a href="#">Create an account</a>
+        <br />
+        <a href="#">Forgot password</a>
+    </div>
+</div>

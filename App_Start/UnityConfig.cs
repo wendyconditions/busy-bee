@@ -1,13 +1,11 @@
-using Microsoft.Practices.Unity;
-using System.Web.Http;
-using Unity.WebApi;
 using System.Configuration;
-using System.Security.Principal;
-using System.Threading;
-using System.Web.Mvc;
+using System.Web.Http;
 using TestingList.Interfaces;
-using TestingList.Services;
 using TestingList.Providers;
+using TestingList.Services;
+using Unity;
+using Unity.Injection;
+using Unity.WebApi;
 
 namespace TestingList
 {
@@ -19,16 +17,13 @@ namespace TestingList
 
             // register all your components with the container here
             // it is NOT necessary to register your controllers
-
             container.RegisterType<IListService, ListService>();
             container.RegisterType<ISystemDictionaryService, SystemDictionaryService>();
             container.RegisterType<IDataProvider, SqlDataProvider>(
                 new InjectionConstructor(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString));
-
+            // e.g. container.RegisterType<ITestService, TestService>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
-            DependencyResolver.SetResolver(new Unity.Mvc5.UnityDependencyResolver(container));
-
         }
     }
 }

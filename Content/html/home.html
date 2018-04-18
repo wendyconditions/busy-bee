@@ -1,37 +1,74 @@
-﻿<div class="row">
-    <div class="col-sm-12">
-        <button type="button" 
-                class="btn btn-block btn-primary create-button"
-                ng-click="vm.createNewList()">New List <i class="fa fa-lg fa-plus-circle add-icon"></i></button>
+﻿<div ng-controller="listController as vm">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">{{vm.name}}'s List</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li ui-sref-active="active"><a ui-sref="home">Active</a></li>
+                    <li ui-sref-active="active"><a ui-sref="completed">Completed</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Filter <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <button type="button"
+                    class="btn btn-block btn-primary create-button"
+                    ng-click="vm.createNewList()">
+                New List <i class="fa fa-lg fa-plus-circle add-icon"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-5 well list-items"
+             ng-repeat="list in vm.lists">
+            <div>
+                <span>{{list.itemValue}}</span><i class="fa fa-lg {{list.toggle ? 'fa-chevron-up' : 'fa-chevron-down '}} pull-right list-chev"
+                                                  ng-click="vm.expandList(list)"></i>
+                <h6>{{list.toDoList.length | number}} / completed</h6>
+
+                <uib-progressbar max="list.max" value="list.dynamic" type="{{vm.type}}" ng-if="list.toDoList.length"><span style="color:white; white-space:nowrap;">{{list.dynamic}} / {{list.max}}</span></uib-progressbar>
+            </div>
+
+            <div class="list-content " ng-if="list.toggle">
+                <div ng-repeat="item in list.toDoList" class="well">
+                    <label class="containers">
+                        {{item.toDoItem}}
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+
+                    <h6>{{list.createdTime | date}}</h6>
+                </div>
+                <div class="new-item">
+                    <i class="fa fa-lg fa-plus"></i> <span class="add-icon"><em>New List Item...</em></span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
-<div class="row">
-    <div class="col-sm-12 col-md-5 well list-items"
-         ng-repeat="list in vm.lists">
-        <div>
-            <span>{{list.itemValue}}</span><i class="fa fa-lg {{list.toggle ? 'fa-chevron-up' : 'fa-chevron-down '}} pull-right list-chev"
-                                              ng-click="vm.expandList(list)"></i>
-            <!--<h6>{{list.toDoList.length | number}} / completed</h6>-->
-
-            <uib-progressbar max="list.max" value="list.dynamic" type="{{vm.type}}"><span style="color:white; white-space:nowrap;">{{list.dynamic}} / {{list.max}}</span></uib-progressbar>
-        </div>
-
-        <div class="list-content " ng-if="list.toggle">
-            <div ng-repeat="item in list.toDoList" class="well">
-                <label class="containers">
-                    {{item.toDoItem}}
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                </label>
-
-                <h6>{{list.createdTime | date}}</h6>
-            </div>
-            <div class="new-item">
-                <i class="fa fa-lg fa-plus"></i> <span class="add-icon"><em>New List Item...</em></span>
-            </div>
-        </div>
-    </div>
-</div>
-
   

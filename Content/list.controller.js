@@ -27,7 +27,7 @@
 
         function _createNewList() {
             $uibModal.open({
-                templateUrl: 'html/newListModal.html',
+                templateUrl: 'newListModal.html',
                 size: 'md',
                 controller: createListController,
                 scope: $scope
@@ -62,6 +62,7 @@
 
         function _init() {
             systemDictionaryService.loadUserLists().then(_loadUsersLists);
+            console.log('hey');
         }
 
         function _loadUsersLists(r) {

@@ -44,46 +44,46 @@
             return $q.reject(error);
         }
 
-        function _deleteSoftTask(ids) {
-            var settings = {
-                method: "POST"
-                , url: "/api/lists/soft"
-                , data: ids
-            };
-            return $http(settings)
-                .then(null, _deleteSoftTaskError);
-        }
+        //function _deleteSoftTask(ids) {
+        //    var settings = {
+        //        method: "POST"
+        //        , url: "/api/lists/soft"
+        //        , data: ids
+        //    };
+        //    return $http(settings)
+        //        .then(null, _deleteSoftTaskError);
+        //}
 
-        function _deleteSoftTaskError(error) {
-            return $q.reject(error);
-        }
+        //function _deleteSoftTaskError(error) {
+        //    return $q.reject(error);
+        //}
 
-        function _putTask(updatedItem) {
-            var settings = {
-                method: "PUT"
-                , url: "/api/lists/" + updatedItem.id
-                , data: updatedItem
-            };
-            return $http(settings)
-                .then(null, _putTaskError);
-        }
+        //function _putTask(updatedItem) {
+        //    var settings = {
+        //        method: "PUT"
+        //        , url: "/api/lists/" + updatedItem.id
+        //        , data: updatedItem
+        //    };
+        //    return $http(settings)
+        //        .then(null, _putTaskError);
+        //}
 
-        function _putTaskError(error) {
-            return $q.reject(error.data.message);
-        }
+        //function _putTaskError(error) {
+        //    return $q.reject(error.data.message);
+        //}
 
-        function _deleteHardTask(ids) {
-            var settings = {
-                method: "POST"
-                , url: "/api/lists/hard"
-                , data: ids
-            };
-            return $http(settings)
-                .then(null, _deleteHardTaskError);
-        }
+        //function _deleteHardTask(ids) {
+        //    var settings = {
+        //        method: "POST"
+        //        , url: "/api/lists/hard"
+        //        , data: ids
+        //    };
+        //    return $http(settings)
+        //        .then(null, _deleteHardTaskError);
+        //}
 
-        function _deleteHardTaskError(error) {
-            $q.reject(error);
-        }
+        //function _deleteHardTaskError(error) {
+        //    $q.reject(error);
+        //}
     }
 })();
