@@ -7,20 +7,24 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-12 col-md-6 well list-items"
+    <div class="col-sm-12 col-md-5 well list-items"
          ng-repeat="list in vm.lists">
-        <span>{{list.itemValue}}</span><i class="fa fa-lg {{list.toggle ? 'fa-chevron-up' : 'fa-chevron-down'}} pull-right list-chev"
-                                          ng-click="vm.expandList(list)"></i>
-        <h6>{{list.toDoList.length | number}} / completed</h6>
+        <div>
+            <span>{{list.itemValue}}</span><i class="fa fa-lg {{list.toggle ? 'fa-chevron-up' : 'fa-chevron-down '}} pull-right list-chev"
+                                              ng-click="vm.expandList(list)"></i>
+            <!--<h6>{{list.toDoList.length | number}} / completed</h6>-->
 
-        <div class="list-content" ng-if="list.toggle">
+            <uib-progressbar max="list.max" value="list.dynamic" type="{{vm.type}}"><span style="color:white; white-space:nowrap;">{{list.dynamic}} / {{list.max}}</span></uib-progressbar>
+        </div>
+
+        <div class="list-content " ng-if="list.toggle">
             <div ng-repeat="item in list.toDoList" class="well">
                 <label class="containers">
                     {{item.toDoItem}}
                     <input type="checkbox">
                     <span class="checkmark"></span>
                 </label>
-                
+
                 <h6>{{list.createdTime | date}}</h6>
             </div>
             <div class="new-item">

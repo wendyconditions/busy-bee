@@ -58,13 +58,29 @@
             }
         }
 
+        vm.dynamic = 1;
+
         function _init() {
             systemDictionaryService.loadUserLists().then(_loadUsersLists);
         }
 
         function _loadUsersLists(r) {
             vm.lists = r.data.items;
+            for (var i = 0; i < vm.lists.length; i++) {
+                vm.lists[i].max = vm.lists[i].toDoList.length;
+                vm.lists[i].dynamic = 0;
 
+                if (vm.lists[i].dynamic < 25) {
+                    vm.type = 'success';
+                } else if (vm.lists[i].dynamic < 50) {
+                    vm.type = 'info';
+                } else if (vm.lists[i].dynamic < 75) {
+                    vm.type = 'warning';
+                } else {
+                    vm.type = 'danger';
+                }
+
+            }
             console.log(vm.lists);
         }
 
@@ -90,7 +106,7 @@
 
             for (var i = 0; i < data.length; i++) {
                 if (data[i].isComplete) {
-                    completedItems.ids.push(data[i].id);  
+                    completedItems.ids.push(data[i].id);
                 }
             }
             listService.completedTask(completedItems).then(_completedSuccess, _completedError);

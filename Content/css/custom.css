@@ -126,7 +126,7 @@
     }
 
 .list-chev:hover {
-    color: red;
+    color: #ccc !important;
     cursor: pointer;
 }
 
@@ -147,6 +147,13 @@
 .list-items span{
     font-size: 20px;
 }
+
+    .list-items i.fa-chevron-up {
+        color: orange;
+    }
+    .list-items i.fa-chevron-down {
+        color: orange;
+    }
 
 h6 {
     color: #cbcbcb;
@@ -228,6 +235,11 @@ h6 {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
+
+
+
+
 
 @media only screen and (max-width: 600px) {
     .modal {
