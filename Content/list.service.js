@@ -39,12 +39,7 @@
                 , url: "/api/lists/"
                 , data: item
             };
-            return $http(settings)
-                .then(null, _postItemError)
-        }
-
-        function _postItemError(error) {
-            return $q.reject(error);
+            return $http(settings);
         }
 
         function _deleteSoftTask(ids) {

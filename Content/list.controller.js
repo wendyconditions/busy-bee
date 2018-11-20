@@ -18,8 +18,64 @@
         vm.btnDelete = _btnDelete;
         vm.createNewList = _createNewList;
         vm.expandList = _expandList;
+        vm.btnAddNewListItem = _btnAddNewListItem;
 
         /////////////
+        function _init() {
+            systemDictionaryService.loadUserLists().then(_loadUsersLists);
+            console.log('hey');
+        }
+
+        function _loadUsersLists(r) {
+            vm.lists = r.data.items;
+            for (var i = 0; i < vm.lists.length; i++) {
+                vm.lists[i].max = vm.lists[i].toDoList.length;
+                vm.lists[i].dynamic = 0;
+
+                if (vm.lists[i].dynamic < 25) {
+                    vm.type = 'success';
+                } else if (vm.lists[i].dynamic < 50) {
+                    vm.type = 'info';
+                } else if (vm.lists[i].dynamic < 75) {
+                    vm.type = 'warning';
+                } else {
+                    vm.type = 'danger';
+                }
+            }
+        }
+
+        function _btnAddNewListItem(parentList) {
+            
+            $uibModal.open({
+                templateUrl: 'html/newItemModal.html',
+                size: 'md',
+                controller: createListController,
+                scope: $scope
+            });
+
+            createListController.$inject = ['$scope', '$uibModalInstance'];
+
+            function createListController($scope, $uibModalInstance) {
+                $scope.newItem = {};
+
+                $scope.btnCreate = function () {
+                    $scope.newItem.priority = 1;
+                    $scope.newItem.listTypeId = parentList.id;
+
+                    console.log($scope.newItem);
+                    listService.createItem($scope.newItem).then(_loadSuccess);
+                    $uibModalInstance.close();
+                }
+
+                $scope.btnCancel = function () {
+                    $uibModalInstance.close();
+                }
+
+                function _loadSuccess(response) {
+                    parentList.toDoList.push(response.data);
+                }
+            }
+        }
 
         function _expandList(list) {
             list.toggle = !list.toggle;
@@ -27,7 +83,7 @@
 
         function _createNewList() {
             $uibModal.open({
-                templateUrl: 'newListModal.html',
+                templateUrl: 'html/newListModal.html',
                 size: 'md',
                 controller: createListController,
                 scope: $scope
@@ -60,34 +116,7 @@
 
         vm.dynamic = 1;
 
-        function _init() {
-            systemDictionaryService.loadUserLists().then(_loadUsersLists);
-            console.log('hey');
-        }
-
-        function _loadUsersLists(r) {
-            vm.lists = r.data.items;
-            for (var i = 0; i < vm.lists.length; i++) {
-                vm.lists[i].max = vm.lists[i].toDoList.length;
-                vm.lists[i].dynamic = 0;
-
-                if (vm.lists[i].dynamic < 25) {
-                    vm.type = 'success';
-                } else if (vm.lists[i].dynamic < 50) {
-                    vm.type = 'info';
-                } else if (vm.lists[i].dynamic < 75) {
-                    vm.type = 'warning';
-                } else {
-                    vm.type = 'danger';
-                }
-
-            }
-            console.log(vm.lists);
-        }
-
-        function _loadSuccess(response) {
-            console.log(response);
-        }
+       
 
         function _btnAdd(data) {
             if (vm.data.id) {

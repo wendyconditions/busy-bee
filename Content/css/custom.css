@@ -103,9 +103,9 @@
     transform: rotate(45deg);
 }
 
-#grad {
+/*#grad {
     background: linear-gradient(yellow, red);
-}
+}*/
 
 .add-icon {
     padding-left:15px;
@@ -136,6 +136,7 @@
     color: #cbcbcb;
     font-size: 15px;
     padding: 15px;
+    cursor: pointer;
 }
 
 .list-items {

@@ -49,6 +49,7 @@ namespace TestingList.Controllers.Api
             {
                 ItemResponse<int> response = new ItemResponse<int>();
                 response.Item = listService.Insert(model);
+                model.Id = response.Item;
                 return Request.CreateResponse(HttpStatusCode.OK, model);
             }  
         }

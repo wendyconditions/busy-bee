@@ -233,9 +233,9 @@
     <Content Include="Content\html\home.html" />
     <Content Include="Content\html\index.html" />
     <Content Include="Content\html\login.html" />
+    <Content Include="Content\html\newItemModal.html" />
     <Content Include="Content\html\newListModal.html" />
     <Content Include="Content\img\300.png" />
-    <Content Include="Content\js\newListModal.js" />
     <Content Include="Content\js\systemDictionary.service.js" />
     <Content Include="Content\js\user.controller.js" />
     <Content Include="Content\js\user.service.js" />
@@ -1073,10 +1073,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

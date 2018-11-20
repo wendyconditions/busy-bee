@@ -1,0 +1,17 @@
+﻿<div class="modal-box">
+    <div class="modal-header">
+        <span class="glyphicon glyphicon-remove-circle pull-right"
+              ng-click="btnCancel()"></span>
+        <h3 class="modal-title" id="modal-title">Add Item</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+        <input type="text"
+               class="form-control"
+               placeholder="To-do item"
+               ng-model="newItem.toDoItem" />
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary pull-right-sm" type="button" ng-click="btnCreate()">Create</button>
+        <button class="btn btn-warning pull-left-sm" type="button" ng-click="btnCancel()">Cancel</button>
+    </div>
+</div>
