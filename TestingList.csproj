@@ -231,7 +231,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\completed.html" />
     <Content Include="Content\html\home.html" />
-    <Content Include="Content\html\index.html" />
     <Content Include="Content\html\login.html" />
     <Content Include="Content\html\newItemModal.html" />
     <Content Include="Content\html\newListModal.html" />

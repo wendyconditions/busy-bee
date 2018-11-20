@@ -21,6 +21,7 @@
 
         function _login() {
             // send auth token use user service
+            console.log(uc.data);
             console.log(uc.data.password, uc.data.email);
         }
     }
